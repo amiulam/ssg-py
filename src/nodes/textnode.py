@@ -1,4 +1,5 @@
 from enum import Enum
+
 from nodes.htmlnode import LeafNode
 
 
@@ -9,6 +10,15 @@ class TextType(Enum):
     CODE = "code"
     LINK = "link"
     IMAGE = "image"
+
+
+class BlockType(Enum):
+    PARAGRAPH = "paragraph"
+    HEADING = "heading"
+    CODE = "code"
+    QUOTE = "quote"
+    UNORDERED_LIST = "unordered_list"
+    ORDERED_LIST = "ordered_list"
 
 
 class TextNode:
