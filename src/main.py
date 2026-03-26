@@ -32,11 +32,9 @@ def generate_pages_recursive(dir_path_content, template_path, dest_dir_path):
 
         if os.path.isfile(from_path):
             if from_path.endswith(".md"):
-                # Mengubah ekstensi .md menjadi .html untuk file tujuan
                 dest_path = dest_path.replace(".md", ".html")
                 generate_page(from_path, template_path, dest_path)
         else:
-            # Jika item adalah direktori, buat direktori tujuan dan panggil rekursif
             if not os.path.exists(dest_path):
                 os.makedirs(dest_path, exist_ok=True)
             generate_pages_recursive(from_path, template_path, dest_path)
@@ -54,11 +52,9 @@ def generate_page(from_path, template_path, dest_path):
     html = node.to_html()
     title = extract_title(content_from)
 
-    # Ganti placeholder di template dengan konten yang sudah diparsing
     content_template = content_template.replace("{{ Title }}", title)
     content_template = content_template.replace("{{ Content }}", html)
 
-    # Pastikan direktori tujuan ada sebelum menulis file
     dest_dir = os.path.dirname(dest_path)
     if dest_dir != "" and not os.path.exists(dest_dir):
         os.makedirs(dest_dir, exist_ok=True)
